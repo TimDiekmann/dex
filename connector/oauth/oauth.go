@@ -153,7 +153,7 @@ func (c *oauthConnector) HandleCallback(s connector.Scopes, r *http.Request) (id
 
 	client := oauth2.NewClient(ctx, oauth2.StaticTokenSource(token))
 
-	userInfoResp, err := client.Get(c.userInfoURL + "?access_token=" + token)
+	userInfoResp, err := client.Get(c.userInfoURL + "?access_token=" + token.AccessToken)
 	if err != nil {
 		return identity, fmt.Errorf("OAuth Connector: failed to execute request to userinfo: %v", err)
 	}
